@@ -44,10 +44,10 @@ resource "aws_route_table_association" "private_subnet_rt_association" {
   route_table_id        = aws_route_table.private_rt.id
 }
 
-# # Adding route to the already existing default vpc RT
-# resource "aws_route" "def_route_robot_vpc" {
-#   route_table_id            = var.DEFAULT_VPC_RT
-#   destination_cidr_block    = var.VPC_CIDR
-#   vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
-#   depends_on                = [aws_vpc_peering_connection.peer]
-# }
+# Adding route to the already existing default vpc RT
+resource "aws_route" "def_route_robot_vpc" {
+  route_table_id            = var.DEFAULT_VPC_RT
+  destination_cidr_block    = var.VPC_CIDR
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+  depends_on                = [aws_vpc_peering_connection.peer]
+}
